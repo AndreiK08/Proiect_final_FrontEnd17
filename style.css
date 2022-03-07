@@ -1,0 +1,71 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto', sans-serif;
+}
+
+.main-navbar {
+	display: flex;
+	justify-content: space-between;
+	background-color: lightsteelblue;
+	height: 40px;
+}
+
+.logo {
+	padding-left: 30px;
+	align-self: center;
+	color: darkblue;
+}
+
+.nav-menu {
+	align-self: center;
+	padding-right: 30px;
+}
+
+.nav-menu {
+	display: flex;
+	gap: 10px;
+}
+
+.cart,
+.admin {
+	color: darkblue;
+	display: flex;
+	gap: 5px;
+	border: 1.5px solid darkblue;
+	border-radius: 5px;
+	padding: 3px;
+	cursor: pointer;
+}
+
+.products-container {
+	padding: 20px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	gap: 20px;
+}
+
+.no-of-products {
+	margin: 0 5px;
+	font-size: 20px;
+}
+
+.admin-products {
+	width: 700px;
+	margin: auto;
+}
+
+.add-product {
+	text-align: center;
+	margin-top: 30px;
+}
+
+.new-product-form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
