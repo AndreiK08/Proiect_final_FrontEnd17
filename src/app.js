@@ -1,29 +1,17 @@
-// const http = require('http');
-
-// const hostname = '127.0.0.1';
-// const port = 3000;
-
-// const server = http.createServer((req, res) => {
-//   res.statusCode = 200;
-//   res.setHeader('Content-Type', 'text/plain');
-//   res.end('Hello World');
-// });
-
-// server.listen(port, hostname, () => {
-//   console.log(`Server running at http://${hostname}:${port}/`);
-// });
-
-
+// *** Produsele apar la incarcarea paginii ***
 window.addEventListener('load', async () => {
 	const productsURL = 'https://62146cca89fad53b1f136ccd.mockapi.io/products';
+	// produsele sunt tip json
 	const result = await fetch(productsURL);
+	// rezultatul produselor il transformam in json
 	const products = await result.json();
 
 	const productContainer = document.querySelector('.products-container');
-
+	// products e un array. Fiind array, aplicam metoda map - ia fiecare element la rand, fiecare produs va fi transformat intr-un cod html si costumizat
 	const cards = products
 		.map(
 			(product) =>
+			// array de stringuri, separate prin virgula
 				`<div class="card" style="width: 18rem;">
                <div class="card-body">
                   <h5 class="card-title">${product.name}</h5>
@@ -32,7 +20,8 @@ window.addEventListener('load', async () => {
                </div>
             </div>`
 		)
+		//.join transforma array-ul intr-un string fara virgula
 		.join('');
-
+	// rezultatul in div-ul .products-container
 	productContainer.innerHTML = cards;
 });
