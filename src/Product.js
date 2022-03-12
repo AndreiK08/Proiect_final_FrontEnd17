@@ -8,3 +8,4 @@ export class Product {
 		this.image = image;
 	}
 }
+

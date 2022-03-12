@@ -6,42 +6,90 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: 'Roboto', sans-serif;
+	/* Setting my font size - default size for browser is 16px */
+/* will use rem insted of pixel 1rem = 10px */
+	font-size: 62.5%; /* 16px * 62.5 = 10px = 1rem */
+}
+/* General  */
+a {
+	text-decoration: none;
 }
 
-.main-navbar {
-	display: flex;
-	justify-content: space-between;
-	background-color: lightsteelblue;
-	height: 40px;
+
+/* Loading screen */
+.loader,
+.loader:after {
+	border-radius: 50%;
+	width: 5em;
+	height: 5em;
+}
+.loader {            
+	margin: 20rem auto;
+	font-size: 20px;
+	position: relative;
+	text-indent: -9999em;
+	border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+	border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+	border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+	border-left: 1.1em solid #ffffff;
+	-webkit-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-animation: load8 1.5s infinite linear;
+	animation: load8 1.5s infinite linear;
+}
+@-webkit-keyframes load8 {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+@keyframes load8 {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+#loadingDiv {
+	position:absolute;;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background-color:#0dc5c1;
 }
 
-.logo {
-	padding-left: 30px;
-	align-self: center;
-	color: darkblue;
+
+/* Navigation bar */
+.nav .btn {
+	width: 5rem;
+}
+.admin:hover{
+	background-color: rgb(236, 106, 106);
+	color: rgb(255, 255, 255);
+}
+.zappy-logo {
+	height: 2rem;
+	margin-left: 2rem;
 }
 
-.nav-menu {
-	align-self: center;
-	padding-right: 30px;
-}
 
-.nav-menu {
-	display: flex;
-	gap: 10px;
-}
 
-.cart,
-.admin {
-	color: darkblue;
-	display: flex;
-	gap: 5px;
-	border: 1.5px solid darkblue;
-	border-radius: 5px;
-	padding: 3px;
-	cursor: pointer;
-}
 
+/* Cart and Admin */
+
+
+
+/* Products */
+/* ****** E NECESAR???? ************** */
 .products-container {
 	padding: 20px;
 	display: grid;
@@ -68,4 +116,75 @@ body {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+}
+
+.card-img-top {
+	width: 80%;
+	height: auto;
+	align-items: center;
+}
+
+
+
+/* Product Title Link */
+.card-title a {
+	color: #000000;
+}
+
+.card-title a:hover {
+	color: #f08040;
+  }
+
+  /* Card Body - Buttons */
+  .card-price {
+	  margin: 1rem 0 0;
+  }
+  .details{
+	padding-left: 1rem;
+
+  }
+/* .badge-warning{
+	  background-color: #f08040;
+	  padding: 15px;
+	  margin-right: 10px;
+	  font-size: 0.7rem;
+  }
+
+	a.badge.badge-pill.badge-warning:hover {
+		color: #000000;
+	}
+.badge-success{
+	  background-color: #00b8d9;
+	  padding: 15px;
+	  margin-right: 10px;
+	  font-size: 0.7rem;
+	}
+	a.badge.badge-pill.badge-success:hover {
+	  color: #3f3e3e;
+	} */
+
+.list-group :last-child{
+	font-size: 1rem;
+}
+
+.card span{
+		font-weight: 600;
+	}
+
+/* Products */
+.col-md-7 input[type="text"] {
+	border: 1px solid #ccc;
+	font-weight: bold;
+	height: 33px;
+	text-align: center;
+	width: 30px;
+}
+
+.price-details {
+	margin: 2rem 0 2rem;
+}
+.cart{
+	margin-left: 20px;
+	color: white;
+	padding: 10px;
 }

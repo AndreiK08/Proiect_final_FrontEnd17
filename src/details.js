@@ -1,32 +1,40 @@
 
 window.addEventListener('load', async () => {
-	// la on load folosim ceea ce ne da obiectul window, location.search.
+	// folosesc ceea ce da obiectul window, location.search.
 	let searchParamString = window.location.search;
-	//  incarcarea paginii vedem ce id avem din fiecare details.html folosing URLSearchParams
+	// iau id-ul din fiecare details.html folosind URLSearchParams
 	const searchParam = new URLSearchParams(searchParamString);
 	const productId = searchParam.get('product-id');
 
 	// pe baza id-ului Fiecare produs se transforma intr-un card
-	const productURL = `https://62146cca89fad53b1f136ccd.mockapi.io/products/${productId}`;
+	const productURL = `https://fakestoreapi.com/products/${productId}`;
 	const result = await fetch(productURL);
 	// rezultatul va fi un singur obiect
 	const product = await result.json();
 // *************** DE ADAUGAT NR PRODUSE IN STOC SI IMAGINE ************************
-// transformam obiectul intr-un card
+	// transform obiectul intr-un card
 	const productCard = `
-		<div class="card">
-			<div class="card-header">
-	  			Product Details
-			</div>
-			<div class="card-body">
-	  			<h5 class="card-title">${product.name}</h5>
-	  			<p class="card-text">${product.description}</p>
-	  			<p class="card-text">${product.price}</p>
-	  			<button data-product-id=${product.id} class="add-to-cart btn btn-primary">Add to cart</button>
-			</div>
- 		</div>`;
+	<div class="container">
+				<div class="row">
+					<div class="col-md-5">
+						<img src="${product.image}" class="img-fluid" alt="Responsive image">
+					</div>
+					<div class="col-md-7">
+						<h2>${product.title}</h2>
+						<h5><b>${product.category}</b></h5>
+						<br>
+						<p class="card-text">${product.description}</p>
+						<p class="card-text">Products in stoc: ${product.rating.count}</p>
+						<p><b>Rating: &#11088;${product.rating.rate}</b></p>
+						<h4 class="price-details">Price: €${product.price}</h4>
+						<label value="1">Quantity:</label>
+						<input type="text" value="1" >
+						<button type="button" class="btn btn-info  cart">Add to cart</button>
+					</div>
+				</div>
+			</div>`;
 
-	// punem produsul in div-un .product-details
+	// pun produsul in div-un .product-details
 	document.querySelector('.product-details').innerHTML = productCard;
 
 });
