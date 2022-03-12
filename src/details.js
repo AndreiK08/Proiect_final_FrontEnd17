@@ -1,5 +1,6 @@
 
 window.addEventListener('load', async () => {
+
 	// folosesc ceea ce da obiectul window, location.search.
 	let searchParamString = window.location.search;
 	// iau id-ul din fiecare details.html folosind URLSearchParams
@@ -29,7 +30,7 @@ window.addEventListener('load', async () => {
 						<h4 class="price-details">Price: €${product.price}</h4>
 						<label value="1">Quantity:</label>
 						<input type="text" value="1" >
-						<button type="button" class="btn btn-info  cart">Add to cart</button>
+						<button data-product-id=${product.id} type="button" class="btn btn-info  cart">Add to cart</button>
 					</div>
 				</div>
 			</div>`;
@@ -41,13 +42,13 @@ window.addEventListener('load', async () => {
 
 // la apasarea butonului de Add to cart vom lua id-ul produsului, definit de proprietatea data-product-id
 document.querySelector('.product-details').addEventListener('click', addToCart);
-async function addToCart(event){
+export async function addToCart(event){
 	// iau atributul data-product-id 
 	const addToCartBtn = event.target;
 	let productId = addToCartBtn.getAttribute('data-product-id');
 
 	// la click vom avea informatiile despre produs
-	const productURL = `https://62146cca89fad53b1f136ccd.mockapi.io/products/${productId}`;
+	const productURL = `https://fakestoreapi.com/products/${productId}`;
 	const result = await fetch(productURL);
 	const product = await result.json();
 
@@ -57,13 +58,20 @@ async function addToCart(event){
 	if (localStorage.getItem('cart') == null) {
 		// adaug in cos produsul din backend, folosid spread operator, adaug o noua proprietate, nr de produse in cos
 		cart.push({ ...product, noOfProducts: 1 });
+
+		// Banner - produs adaugat cu succes in cos
+		addToCartBanner();
+	
+
+
 		} else { 
 			// Verific daca in cos exista produse cu id-ul produsului din details
 			cart = JSON.parse(localStorage.getItem('cart'));
 			const productInCart = cart.find((productFromCart) => productFromCart.id == product.id);
 			
 			if (productInCart != undefined){ // Daca produsul exista in cart
-				// ************** DE ADAUGAT UN DIV VERDE _ CONFIRMARE VIZUALA ADAUGAT IN COS
+				
+	
 				// Daca exista produsul, maresc cu unu
 				productInCart.noOfProducts++;
 				console.log('Produsul exista in cos');
@@ -73,9 +81,35 @@ async function addToCart(event){
 				const productToBeAddedInCart = {...product, noOfProducts: 1};
 				cart.push(productToBeAddedInCart);
 				console.log('Produsul a fost adaugat prima oara in cos');
+				// Banner - produs adaugat cu succes in cos
+				addToCartBanner();
+
 			}
 	}
 
 	// punem cart-ul updatat in local storage. Daca cart-ul este gol, stergem 
  	if (cart.length > 0) localStorage.setItem('cart', JSON.stringify(cart));
 }
+
+  // Afisare mesaj succes daca un produs adaugat a fost adaugat in cos
+ export function addToCartBanner() {
+	const messageBanner = `
+		<div class="alert alert-success" role="alert" id="msgCartElem">
+			Product added to cart!
+		  </div>
+	`;
+	const addOk = document.querySelector('.product-added-container');
+	addOk.innerHTML = messageBanner;
+	
+  }
+//   DE ADAUGAT *******************
+ export function alreadyCartBanner() {
+	const messageBanner = `
+		<div class="alert alert-success" role="alert" id="msgCartElem">
+			Product added to cart!
+		  </div>
+	`;
+	const addOk = document.querySelector('.product-added-container');
+	addOk.innerHTML = messageBanner;
+	
+  }

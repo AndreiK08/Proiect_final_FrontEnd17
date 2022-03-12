@@ -81,15 +81,20 @@ a {
 	margin-left: 2rem;
 }
 
-
-
+/* Product added to cart */
+.product-added-container{
+	position: sticky;
+	visibility: visible;
+	height: 30px;
+	margin-bottom: 0;
+	margin-left: 30%;
+	margin-right: 30%;
+	text-align: center;
+	font-weight: bold;
+}
 
 /* Cart and Admin */
 
-
-
-/* Products */
-/* ****** E NECESAR???? ************** */
 .products-container {
 	padding: 20px;
 	display: grid;
@@ -143,25 +148,7 @@ a {
 	padding-left: 1rem;
 
   }
-/* .badge-warning{
-	  background-color: #f08040;
-	  padding: 15px;
-	  margin-right: 10px;
-	  font-size: 0.7rem;
-  }
 
-	a.badge.badge-pill.badge-warning:hover {
-		color: #000000;
-	}
-.badge-success{
-	  background-color: #00b8d9;
-	  padding: 15px;
-	  margin-right: 10px;
-	  font-size: 0.7rem;
-	}
-	a.badge.badge-pill.badge-success:hover {
-	  color: #3f3e3e;
-	} */
 
 .list-group :last-child{
 	font-size: 1rem;
@@ -188,3 +175,4 @@ a {
 	color: white;
 	padding: 10px;
 }
+

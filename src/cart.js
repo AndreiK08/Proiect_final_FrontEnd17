@@ -44,7 +44,7 @@ function handleCartActions(event) {
 	// iau butonul unde s-a dat click
 	const targetButton = event.target;
 	let cart = JSON.parse(localStorage.getItem('cart'));
-	// o sa ne gaseacsa daca este in cart pe ce am apasat
+	// o sa ne gaseasca daca este in cart pe ce am apasat
 	const productInCart = cart.find(
 		(productFromCart) =>
 			productFromCart.id == targetButton.getAttribute('data-product-id')
@@ -81,3 +81,5 @@ function handleCartActions(event) {
 		document.querySelector('.total-price-container').innerHTML = totalPriceCard;
 	}
 }
+
+
