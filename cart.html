@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/x-icon" href="./icons/cart.png" />
+		<link rel="icon" type="image/x-icon" href="./icons/home.png" />
 		<link
 			rel="stylesheet"
 			href="node_modules/bootstrap/dist/css/bootstrap.min.css"
@@ -18,29 +18,70 @@
 			href="node_modules/roboto-fontface/css/roboto/roboto-fontface.css"
 		/>
 		<link rel="stylesheet" href="style.css" />
-		<title>Cart</title>
+		<title>Zappy</title>
 	</head>
 	<body>
-		<div class="main-container">
-			<div class="main-navbar">
-				<div class="logo">
-					<a href="index.html"><h2>17-mag</h2></a>
+		<!-- START Nav bar  -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+			<div class="container-fluid">
+			<a class="navbar-brand" href="index.html">
+				<img  class="zappy-logo" src="img/zappy.png" alt="zappy-logo">
+			</a>
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link active text-secondary ml-1" href="admin.html"><button type="button" class="btn btn-outline-light admin position-relative">Admin
+					</button></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active text-secondary" href="cart.html"><button type="button" class="btn btn-outline-light position-relative">Cart</button></a>
+				</li>
+			</ul>
+			</div>
+		</nav>
+		<!-- END Nav bar -->
+
+		<!-- START Cart container -->
+		
+
+
+		<div class="cart-container container container-fluid">
+			<div class="row">
+				<div class="col-sm-8">
+				
+					<table class="table mt-4 border">
+						<thead>
+							<tr>
+								<th scope="col">Image</th>
+								<th scope="col">Product</th>
+								<th scope="col">Price </th>
+								<th scope="col">Quantity</th>
+								<th scope="col">Subtotal</th>
+								<th></th>
+							</tr>
+						</thead>
+						<!-- Adaug produsele aici  -->
+						<tbody class="products-in-cart"></tbody>
+					</table>
 				</div>
-				<div class="nav-menu">
-					<div class="cart">
-						<a href="cart.html"
-							>CART<i class="fas fa-shopping-cart menu-icon"></i
-						></a>
-					</div>
-					<div class="admin">
-						<a href="admin.html"><i class="fas fa-users-cog menu-icon">ADMIN</i>
-						</a>
-					</div>
+				<div class="col-sm-4">
+					<br>
+					<ul class="list-group">
+						<li class="list-group-item " id="nrOfProductsInCart">Nr of products: DE SCHIMBAT</li>
+						<li class="list-group-item total-price-container " id="totalPriceCard">Total price: <b>0</b></li>
+						<li class="list-group-item">
+							<button type="button" class="btn btn-secondary sm cart delete-all">delete all</button> 
+							<button type="button" class="btn btn-info  cart">Proceed to checkout</button>
+						</li>
+					</ul>
 				</div>
 			</div>
-			<div class="cart-container"></div>
-			<div class="total-price-container"></div>
 		</div>
+
+		<!-- Footer -->
+		
+		<!--END Footer -->
+
+
 		<script type="module" src="./src/cart.js"></script>
 	</body>
 </html>

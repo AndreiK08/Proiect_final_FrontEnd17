@@ -2,7 +2,7 @@ const productTableBody = document.querySelector('.admin-products-table');
 const addNewProductBtn = document.querySelector('.add-new-product');
 const updateProductBtn = document.querySelector('.update-product');
 
-const productsURL = 'https://62146cca89fad53b1f136ccd.mockapi.io/products';
+const productsURL = 'https://fakestoreapi.com/products';
 
 window.addEventListener('load', getAllProducts);
 
@@ -15,7 +15,7 @@ async function getAllProducts() {
 			(product) =>
 				`<tr>
                <th scope="row">${product.id}</th>
-               <td>${product.name}</td>
+               <td>${product.title}</td>
                <td>${product.price}</td>
                <td><button class="btn btn-danger delete" data-product-id=${product.id}>X
                </button></td>

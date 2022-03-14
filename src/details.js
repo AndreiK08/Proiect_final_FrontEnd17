@@ -1,4 +1,5 @@
 
+
 window.addEventListener('load', async () => {
 
 	// folosesc ceea ce da obiectul window, location.search.
@@ -37,6 +38,7 @@ window.addEventListener('load', async () => {
 
 	// pun produsul in div-un .product-details
 	document.querySelector('.product-details').innerHTML = productCard;
+	onLoadCartNumbers()
 
 });
 
@@ -75,6 +77,7 @@ export async function addToCart(event){
 				// Daca exista produsul, maresc cu unu
 				productInCart.noOfProducts++;
 				console.log('Produsul exista in cos');
+				alreadyInCart();
 
 			}else { // Daca produsul NU exista in cart
 				// creez un obiect nou si il adaug
@@ -89,10 +92,12 @@ export async function addToCart(event){
 
 	// punem cart-ul updatat in local storage. Daca cart-ul este gol, stergem 
  	if (cart.length > 0) localStorage.setItem('cart', JSON.stringify(cart));
+	cartNumbers()
+
 }
 
   // Afisare mesaj succes daca un produs adaugat a fost adaugat in cos
- export function addToCartBanner() {
+function addToCartBanner() {
 	const messageBanner = `
 		<div class="alert alert-success" role="alert" id="msgCartElem">
 			Product added to cart!
@@ -103,13 +108,37 @@ export async function addToCart(event){
 	
   }
 //   DE ADAUGAT *******************
- export function alreadyCartBanner() {
+function alreadyInCart() {
 	const messageBanner = `
-		<div class="alert alert-success" role="alert" id="msgCartElem">
-			Product added to cart!
+		<div class="alert alert-warning" role="alert" id="msgCartElem">
+			Product already in cart!
 		  </div>
 	`;
 	const addOk = document.querySelector('.product-added-container');
 	addOk.innerHTML = messageBanner;
 	
   }
+
+
+//   Salvez in local storage numarul de produse adaugate in cos si afisez rezultatul in cart span
+function cartNumbers(){
+	let productNumbers = localStorage.getItem('cartNumbers');
+	productNumbers = parseInt(productNumbers);
+	if(productNumbers) {
+		localStorage.setItem('cartNumbers', productNumbers + 1);
+		document.querySelector('.cart span').textContent = productNumbers + 1;
+		
+	} else {
+		localStorage.setItem('cartNumbers',  1);
+		document.querySelector('.cart span').textContent = 1;
+	}
+	console.log(productNumbers)
+}
+
+// On load - afisez numarul produselor din local storage
+function onLoadCartNumbers(){
+	let productNumbers = localStorage.getItem('cartNumbers');
+	if (productNumbers){ 
+		document.querySelector('.cart span').textContent = productNumbers;
+	}
+}

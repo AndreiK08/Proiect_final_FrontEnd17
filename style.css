@@ -69,6 +69,9 @@ a {
 
 
 /* Navigation bar */
+.navbar {
+	width: 100%;
+}
 .nav .btn {
 	width: 5rem;
 }
@@ -176,3 +179,11 @@ a {
 	padding: 10px;
 }
 
+.quantity {
+	background-color: red;
+	font-size: small;
+}
+
+.products-in-cart {
+	visibility: visible;
+}

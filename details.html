@@ -22,21 +22,22 @@
 	</head>
 	<body>
 		<!-- START Nav bar  -->
-		<div class="container"></div>
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between ">
-				<a class="navbar-brand" href="index.html">
-					<img  class="zappy-logo" src="img/zappy.png" alt="zappy-logo">
-				</a>
-				<ul class="nav">
-					<li class="nav-item">
-						<a class="nav-link active text-secondary" href="cart.html"><button type="button" class="btn btn-outline-light">Cart</button></a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active text-secondary .ml-1" href="admin.html"><button type="button" class="btn btn-outline-light admin">Admin</button></a>
-					</li>
-				</ul>
-			</nav>
-		</div>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+			<div class="container-fluid">
+			<a class="navbar-brand" href="index.html">
+				<img  class="zappy-logo" src="img/zappy.png" alt="zappy-logo">
+			</a>
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link active text-secondary ml-1" href="admin.html"><button type="button" class="btn btn-outline-light admin position-relative">Admin
+					</button></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active text-secondary" href="cart.html"><button type="button" class="btn btn-outline-light position-relative cart">Cart<span class="position-absolute top-20 start-95 translate-middle badge rounded-pill bg-secondary">0</span></button></a>
+				</li>
+			</ul>
+			</div>
+		</nav>
 		<!-- END Nav bar -->
 
 		<!-- Added to Cart Banner -->
@@ -44,33 +45,13 @@
 
 		<!-- Products container -->
 		<div class="products-container"></div>
+		<div class="total-price-container"></div>
 		<!-- END Products container -->
 		
 		
 		
 		<!-- Products details -->
 		<div class="product-details">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-5">
-						<img src="${product.image}" class="img-fluid" alt="Responsive image">
-					</div>
-					<div class="col-md-7">
-						<h2>${product.title}</h2>
-						<p><b>Rating: &#11088;${product.rating.rate}</b></p>
-						<h5><b>${product.category}</b></h5>
-						<br>
-						<p class="card-text">${product.description}</p>
-						<p class="card-text">Products in stoc: ${product.rating.count}</p>
-						<br>
-						<p class="price-details"><b>Price: €</b>${product.price}</p>
-						<label value="1">Quantity:</label>
-						<input type="text" value="1" >
-						<button type="button" class="btn btn-primary btn-sm cart">Add to cart</button>
-					</div>
-				</div>
-			</div>
-
 
 		</div>
 		<!-- END Products details -->

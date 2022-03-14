@@ -44,7 +44,7 @@ window.addEventListener('load', async () => {
 										</ul>
 										<div class="card-body">
 											<button type="button" class="btn btn-secondary details"><a "class="badge badge-pill badge-success">Details</a></button>
-											<button type="button" data-product-id=${product.id} class="btn btn-info btn-sm cart">Add to cart</button>
+											<button type="button" data-product-id=${product.id} class="btn btn-info btn-sm cart add-cart">Add to cart</button>
 										</div>
 									</div>
 								</div>
@@ -57,6 +57,8 @@ window.addEventListener('load', async () => {
 		.join('');
 	// rezultatul in div-ul .products-container
 	productContainer.innerHTML = cards;
+	onLoadCartNumbers();
+
 });
 
 
@@ -81,10 +83,9 @@ async function addToCart(event){
 
 		// Banner - produs adaugat cu succes in cos
 		addToCartBanner();
-	
-	
+		alert('Product added to cart!')
 
-
+	
 		} else { 
 			// Verific daca in cos exista produse cu id-ul produsului din details
 			cart = JSON.parse(localStorage.getItem('cart'));
@@ -92,23 +93,25 @@ async function addToCart(event){
 			
 			if (productInCart != undefined){ // Daca produsul exista in cart
 				// Banner - produs adaugat cu succes in cos
-		addToCartBanner();
-	
+				addToCartBanner();
+			alert('Product added to cart!')
+
 				// Daca exista produsul, maresc cu unu
 				productInCart.noOfProducts++;
-				console.log('Produsul exista in cos');
 
 			}else { // Daca produsul NU exista in cart
 				// creez un obiect nou si il adaug
 				const productToBeAddedInCart = {...product, noOfProducts: 1};
 				cart.push(productToBeAddedInCart);
-				console.log('Produsul a fost adaugat prima oara in cos');
-
 			}
 	}
 
 	// punem cart-ul updatat in local storage. Daca cart-ul este gol, stergem 
  	if (cart.length > 0) localStorage.setItem('cart', JSON.stringify(cart));
+	console.log(cart.length);
+
+	cartNumbers();
+	 
 }
 
   // Afisare mesaj succes daca un produs adaugat a fost adaugat in cos
@@ -123,6 +126,32 @@ function addToCartBanner() {
 	
   }
 
+//   Salvez in local storage numarul de produse adaugate in cos si afisez rezultatul in cart span
+function cartNumbers(){
 
+	let productNumbers = localStorage.getItem('cartNumbers');
+
+	productNumbers = parseInt(productNumbers);
+	if(productNumbers) {
+		localStorage.setItem('cartNumbers', productNumbers + 1);
+		document.querySelector('.cart span').textContent = productNumbers + 1;
+		
+	} else {
+		localStorage.setItem('cartNumbers',  1);
+		document.querySelector('.cart span').textContent = 1;
+	}
+	console.log(productNumbers)
+}
+
+// On load - afisez numarul produselor din local storage
+function onLoadCartNumbers(){
+	let productNumbers = localStorage.getItem('cartNumbers');
+	if (productNumbers){ 
+		document.querySelector('.cart span').textContent = productNumbers;
+	}
+}
+
+
+ 
 
 
