@@ -31,7 +31,7 @@ window.addEventListener('load', async () => {
 						<h4 class="price-details">Price: €${product.price}</h4>
 						<label value="1">Quantity:</label>
 						<input type="text" value="1" >
-						<button data-product-id=${product.id} type="button" class="btn btn-info  cart">Add to cart</button>
+						<button data-product-id=${product.id} type="button" class="btn btn-success cart add-cart">Add to cart</button>
 					</div>
 				</div>
 			</div>`;

@@ -21,71 +21,73 @@
 		<title>Admin</title>
 	</head>
 	<body>
-		<div class="main-container">
-			<div class="main-navbar">
-				<div class="logo">
-					<a href="index.html"><h2>17-mag</h2></a>
-				</div>
-				<div class="nav-menu">
-					<div class="cart">
-						<a href="cart.html"
-							>CART<i class="fas fa-shopping-cart menu-icon"></i
-						></a>
-					</div>
-					<div class="admin">
-						<a href="admin.html"><i class="fas fa-users-cog menu-icon">ADMIN</i>
-						</a>
-					</div>
-				</div>
+		
+			<!-- START Nav bar  -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+			<div class="container-fluid">
+			<a class="navbar-brand" href="index.html">
+				<img  class="zappy-logo" src="img/zappy.png" alt="zappy-logo">
+			</a>
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link active text-secondary ml-1" href="admin.html"><button type="button" class="btn btn-outline-light admin position-relative">Admin
+					</button></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active text-secondary" href="cart.html"><button type="button" class="btn btn-outline-light main-cart position-relative">Cart</button></a>
+				</li>
+			</ul>
 			</div>
+		</nav>
+		<!-- END Nav bar -->
+
+		<!-- Admin products -->
 			<div class="admin-products">
 				<div class="add-product">
 					<form class="new-product-form">
+						<h4>Edit products</h4>
 						<div class="form-group">
-							<input
-								type="text"
-								class="form-control"
-								id="name"
-								placeholder="Product name"
-							/>
+							<input type="text" class="form-control" id="name" placeholder="Product name" />
 						</div>
 						<div class="form-group">
-							<input
-								type="text"
-								class="form-control"
-								id="price"
-								placeholder="Product price"
-							/>
+							<textarea class="form-control" i class="form-control" id="description" placeholder="Product description"
+							rows="3"></textarea>
 						</div>
 						<div class="form-group">
-							<input
-								type="text"
-								class="form-control"
-								id="description"
-								placeholder="Product description"
-							/>
+							<input type="text" class="form-control" id="price" placeholder="Product price" />
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" id="stock" placeholder="Products in stock" />
 						</div>
 						<div class="form-group">
 							<input type="hidden" id="productId" name="productId" />
 						</div>
+						<div class="form-group">
+							<input class="form-control" type="file" id="formFile" >
+						  </div>
 
 						<div>
-							<button class="update-product btn btn-primary">
+							<button class="update-product btn btn-info">
 								Update product
 							</button>
-							<button class="add-new-product btn btn-primary">
+							<button class="add-new-product btn btn-warning">
 								Add new product
 							</button>
 						</div>
 					</form>
 				</div>
 				<div class="all-products-admin">
+					
 					<table class="table table-striped">
 						<thead>
 							<tr>
 								<th scope="col">Id</th>
+								<th scope="col">Image</th>
 								<th scope="col">Name</th>
+								<th scope="col">In stock</th>
 								<th scope="col">Price</th>
+								<th scope="col">Remove</th>
+								<th scope="col">Edit</th>
 							</tr>
 						</thead>
 						<tbody class="admin-products-table"></tbody>
@@ -93,6 +95,105 @@
 				</div>
 			</div>
 		</div>
+		<!-- END Admin products -->
+
+		<!-- Footer -->
+		<div class="footer">
+			<footer class="text-center text-lg-start bg-dark mt-xl-5 pt-2">
+				<div class="container">
+				  <div class="row d-flex justify-content-lg-around">
+					<div class="col-lg-3 col-md-6 my-2 mb-lg-0">
+						<a href="index.html"><img class="zappy-logo" src="img/zappy.png" alt="zappy-logo"></a>
+						<br>
+						<!-- About Page -->
+						<ul class="list-unstyled mb-4">
+						<li>
+						  <a href="./about.html" class="text-white">About us</a>
+						</li>
+						<li>
+						<!-- Contact Page -->
+						  <a href="./contact.html" class="text-white">Contact us</a>
+						</li>
+						<li>
+						<!-- Privacy page -->
+						  <a href="#!" class="text-white">Privacy & Security</a>
+						</li>
+					  </ul>
+					</div>
+		  
+					<!-- Payment methods -->
+					<div class="col-lg-3 col-md-6 my-2 mb-lg-0">
+					  <div class="pt-4">
+						<h5 class="mb-4 text-white">We accept</h5>
+		  
+						<img
+						  class="mr-2"
+						  width="45px"
+						  src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
+						  alt="Visa"
+						/>
+						<img
+						  class="mr-2"
+						  width="45px"
+						  src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
+						  alt="American Express"
+						/>
+						<img
+						  class="mr-2"
+						  width="45px"
+						  src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
+						  alt="Mastercard"
+						/>
+						<img
+						  class="mr-2"
+						  width="45px"
+						  src="https://mdbootstrap.com/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.png"
+						  alt="PayPal acceptance mark"
+						/>
+					  </div>
+					</div>
+		  
+					<div class="col-lg-5 col-md-6 my-4 mb-lg-0">
+					  <h5 class="text-light mb-4">Sign up to our newsletter</h5>
+		  
+					  <div class="form-outline form-white mb-4 d-flex">
+						<input
+						  type="email"
+						  id="email-subscription"
+						  class="form-control col-sm-4 col-md-4 col-xl-2"
+						/>
+						<button type="submit" class="btn btn-secondary d-block btn-block">
+						  Subscribe
+						</button>
+					  </div>
+					</div>
+				  </div>
+				</div>
+				<!-- Copyright -->
+				<div
+				  class="
+					row
+					border-top
+					d-flex
+					align-content-center
+					justify-content-center
+				  "
+				>
+				  <div class="text-center py-2 text-light">
+					<p>
+					  &copy;
+					  <script>
+						document.write(new Date().getFullYear());
+					  </script>
+					  Andrei Cîmpean. All rights reserved.
+					</p>
+				  </div>
+				</div>
+			</footer>
+		</div>
+			<!--END Footer -->
+
+			
 		<script type="module" src="./src/admin.js"></script>
 	</body>
 </html>

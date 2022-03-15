@@ -24,7 +24,7 @@ window.addEventListener('load', () => {
 						<span class="no-of-products">${product.noOfProducts}</span>
 						<button data-product-id=${product.id} class="increment btn-info btn-xsm"> + </button>
 					</td>
-					<td class="subtotal">${product.price}DE MODIF</td>
+					<td class="subtotal">${product.price}</td>
 					<td><button data-product-id=${product.id} class="delete btn btn-dark btn-sm">x</button></td>
 				</tr>
 			`
@@ -37,8 +37,11 @@ window.addEventListener('load', () => {
 		document.querySelector('.products-in-cart').innerHTML = productCards;
 		document.querySelector('.total-price-container').innerHTML = totalPriceCard;
 	}
-	
+	showNrOfProducts();
 });
+
+
+
 
 
 
@@ -63,14 +66,32 @@ function handleCartActions(event) {
 		productInCart.noOfProducts++;
 		increaseCartNumbers();
 	} else if (targetButton.classList.contains('decrement')) {
-		if (productInCart.noOfProducts > 1) productInCart.noOfProducts--;
-		decreseCartNumbers();
+		if (productInCart.noOfProducts > 1) {
+		productInCart.noOfProducts--;
+		decreseCartNumbers();}
 
 	} else if (targetButton.classList.contains('delete')) {
 		productInCart.noOfProducts = 0;
 		// Updatez cart-ul sa nu mai contina acel prous, filtrat sa contina doar produsele diferite de acesta
 		cart = cart.filter((product) => product.id != productInCart.id);
+
+		// productNumbers = productNumbers - productInCart.noOfProducts;
+		console.log(productNumbers)
+		console.log(productInCart.noOfProducts)
+
 		targetButton.parentNode.parentNode.remove();
+
+		// Updatez total produse
+		let total = 0;
+		cart.forEach((product) => {
+			total = total + parseFloat(product.price) * product.noOfProducts;
+		});
+		let totalPriceCard = `<b>Total price: ${total}</b>`;
+		document.querySelector('.total-price-container').innerHTML = totalPriceCard;
+		
+		// update Nr produte
+		showNrOfProducts();
+
 
 	}
 
@@ -79,11 +100,9 @@ function handleCartActions(event) {
 	if (productInCart) {
 		quantityParagraph.querySelector('.no-of-products').innerHTML =
 			productInCart.noOfProducts;
-
-		
-
 	}
 
+	// Total Price
 	let total = 0;
 	cart.forEach((product) => {
 		total = total + parseFloat(product.price) * product.noOfProducts;
@@ -92,38 +111,30 @@ function handleCartActions(event) {
 	document.querySelector('.total-price-container').innerHTML = totalPriceCard;
 }
 
-
-
+// iau din local storage nr de produse
+let productNumbers = localStorage.getItem('cartNumbers');
+// productNumbers = parseInt(productNumbers);
 
 // Update numarul de produse din cart - local storage
 function decreseCartNumbers(){
 	let productNumbers = localStorage.getItem('cartNumbers');
 	productNumbers = parseInt(productNumbers);
-	if(productNumbers) {
-		localStorage.setItem('cartNumbers', productNumbers - 1);
-		nrOfProducts();
-	} else {
-		localStorage.setItem('cartNumbers',  1);
-		document.querySelector('.cart span').textContent = 1;
-	}
+	localStorage.setItem('cartNumbers', productNumbers - 1);
+	showNrOfProducts();
 	console.log(productNumbers)
 }
 
 function increaseCartNumbers(){
 	let productNumbers = localStorage.getItem('cartNumbers');
 	productNumbers = parseInt(productNumbers);
-	if(productNumbers) {
-		localStorage.setItem('cartNumbers', productNumbers + 1);
-		nrOfProducts();
-	} else {
-		localStorage.setItem('cartNumbers',  1);
-		document.querySelector('.cart span').textContent = 1;
-	}
+	localStorage.setItem('cartNumbers', productNumbers + 1);
+	
+	showNrOfProducts();
 	console.log(productNumbers)
 }
 
 
-// Sterg toate produsele din cos si golesc local storage  key - carst si cartNumbers
+// Sterg toate produsele din cos si golesc local storage  key - cart si cartNumbers
 const totalContainer = document.querySelector('.cart-container');
 cartContainer.addEventListener('click', deleteAll);
 
@@ -132,37 +143,33 @@ function deleteAll(event) {
 	let btnDeleteAll = addToCartBtn.classList.contains('delete-all');
 	let cartContainer = document.querySelector('.cart-container .table');
 
-	
 	if (btnDeleteAll){
 		// update containerul cu total 
 		total = 0;	
 		let totalPriceCard = `<b>Total price: ${total}</b>`;
 		document.querySelector('.total-price-container').innerHTML = totalPriceCard;
 
-		// update nr de producs ****************************************
 
-		// delete produsele afisate in cart
+		// delete produsele afisate in cart si redirect catre index.html
 		cartContainer.style.visibility = 'hidden';
+		window.open("index.html");
 
 		// delete storage keys: cart and cartNumbers
 		localStorage.removeItem('cart');
 		localStorage.removeItem('cartNumbers');
 
+		// update nr de produse
+		showNrOfProducts();
+
 	}
 }
 
 // Update afisez nr de produse 
-function nrOfProducts(){
+function showNrOfProducts(){
 	let productNumbers = localStorage.getItem('cartNumbers');
 	productNumbers = parseInt(productNumbers);
-	console.log(productNumbers + 'test')
+	
+	let nrOfProductsInCart = document.getElementById('nrOfProductsInCart');
+	nrOfProductsInCart.innerHTML = 'Nr of products: ' + productNumbers;
 
-	// nrOfProductsInCart = document.getElementById('nrOfProductsInCart');
-	// console.log(nrOfProducts)
-
-	// if(productNumbers) {
-	// 	nrOfProductsInCart.innerHTML = productNumbers;
-		
-	// } 
-	// console.log(productNumbers)
 }

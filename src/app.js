@@ -43,8 +43,9 @@ window.addEventListener('load', async () => {
 											<li class="list-group-item card-price"><span>Price: €</span>${product.price}</li>
 										</ul>
 										<div class="card-body">
-											<button type="button" class="btn btn-secondary details"><a "class="badge badge-pill badge-success">Details</a></button>
-											<button type="button" data-product-id=${product.id} class="btn btn-info btn-sm cart add-cart">Add to cart</button>
+										<a href="details.html?product-id=${product.id}"><button type="button" class="btn btn-secondary details">Details</button></a>
+										<button type="button" class="btn btn-success add-cart" data-product-id=${product.id}>Add to cart</button></a>
+										
 										</div>
 									</div>
 								</div>
@@ -83,7 +84,6 @@ async function addToCart(event){
 
 		// Banner - produs adaugat cu succes in cos
 		addToCartBanner();
-		alert('Product added to cart!')
 
 	
 		} else { 
@@ -94,7 +94,6 @@ async function addToCart(event){
 			if (productInCart != undefined){ // Daca produsul exista in cart
 				// Banner - produs adaugat cu succes in cos
 				addToCartBanner();
-			alert('Product added to cart!')
 
 				// Daca exista produsul, maresc cu unu
 				productInCart.noOfProducts++;
@@ -121,9 +120,9 @@ function addToCartBanner() {
 			Product added to cart!
 		  </div>
 	`;
+	alert('Product added to cart!')
 	const addOk = document.querySelector('.product-added-container');
 	addOk.innerHTML = messageBanner;
-	
   }
 
 //   Salvez in local storage numarul de produse adaugate in cos si afisez rezultatul in cart span
