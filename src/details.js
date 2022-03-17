@@ -26,7 +26,7 @@ window.addEventListener('load', async () => {
 						<h5><b>${product.category}</b></h5>
 						<br>
 						<p class="card-text">${product.description}</p>
-						<p class="card-text">Products in stoc: ${product.rating.count}</p>
+						<p class="card-text">Products in stock: ${product.rating.count}</p>
 						<p><b>Rating: &#11088;${product.rating.rate}</b></p>
 						<h4 class="price-details">Price: €${product.price}</h4>
 						<label value="1">Quantity:</label>
