@@ -29,7 +29,7 @@ window.addEventListener('load', async () => {
 		.map(
 			(product) =>
 			// array de stringuri, separate prin virgula
-				`<div class="card-group">
+				`<div class="container card-group ">
 					<div class="container mt-4">
 						<div class="row">
 							<div class="col-md-4">
